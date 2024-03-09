@@ -1,4 +1,4 @@
-package com.example.Back_End_POS;
+package lk.ijse.gdse66.spring;
 
 import java.io.*;
 import javax.servlet.http.*;
