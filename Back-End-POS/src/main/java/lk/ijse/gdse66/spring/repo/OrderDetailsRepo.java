@@ -1,4 +1,7 @@
 package lk.ijse.gdse66.spring.repo;
 
-public interface OrderDetailsRepo {
+import lk.ijse.gdse66.spring.entity.OrderDetails;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderDetailsRepo extends JpaRepository<OrderDetails, String> {
 }
