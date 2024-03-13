@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS System</title>
+    <link rel="stylesheet" href="assects/necolas.github.io_normalize.css_8.0.1_normalize.css">
+    <link rel="stylesheet" href="assects/bootsrap/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow custom-navbar bg-body-tertiary">
+            <div class="container-fluid" style="background-color: #ffffff; height: 60px;">
+                <img src="assects/assets/1.png" alt="foodcity" class="img-responsive custom-logo"
+                     style="height: 50px; width: 50px; border: 2px solid rgb(226, 226, 226); border-radius: 50%; margin: 10px;">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent"
+                     style="background-color: #ffffff; margin: 30px;">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 20px;">
+                        <li id="home-nav" class="nav-item">
+                            <!--                            <a class="nav-link active fw-medium text-body-secondary" aria-current="page" href="#"></i>Home</a>-->
+                            <a class="nav-link fw-medium" href="#home-page" style="font-size: 15px; color: red;">Home</a>
+                        </li>
+                        <li id="customer-nav" class="nav-item">
+                            <a class=" nav-link fw-medium" href="#customer-page" style="font-size: 15px; color: red;">Customers</a>
+                        </li>
+                        <li id="item-nav" class="nav-item">
+                            <a class="nav-link fw-medium" href="#item-page" style="font-size: 15px; color: red;">Items</a>
+                        </li>
+                        <li id="order-nav" class="nav-item">
+                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px; color: red;">Place Orders</a>
+                        </li>
+                        <li id="orderDetail-nav" class="nav-item">
+                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px; color: red;">Order Details</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button type="button" class="btn btn-outline-light" style="background-color: red;">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home-page">
+            <div class="container text-center" style="margin-bottom: 10px; position: relative; top: 10rem;">
+
+            </div>
+        </section>
+
+        <section id="customer-page">
+            <section id="customer-title" class="d-flex mt-5 mb-4 justify-content-center">
+            </section>
+            <section id="customer-content" class="container-fluid py-4 rounded-4">
+                <section class="d-flex justify-content-around flex-wrap-reverse">
+                    <section id="left-content" class="col-12 col-sm-8 my-2">
+                        <section id="customer-search" class="mb-5">
+                            <form class="row gx-3 gy-2 align-items-center">
+<!--                                <div class="col-sm-3">-->
+<!--                                    <label class="visually-hidden" for="cmbCustomerSearch">Preference</label>-->
+<!--                                    <select class="form-select" id="cmbCustomerSearch">-->
+<!--                                        <option value="ID">ID</option>-->
+<!--                                        <option value="Name">Name</option>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+                                <div class="mb-3 ms-3 me-3 mt-3 ">
+                                    <label class="fw-bold" for="searchCusId">Search Customer :</label>
+                                    <input class="form-control me-2 mt-2" id="searchCusId" placeholder="Input ID"
+                                           type="search">
+                                </div>
+                            </form>
+                        </section>
+
+                        <section id="customer-table" class="p-2 rounded-4 bg-light">
+                            <table id="tableCustomer" class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="bg-danger text-white">ID</th>
+                                    <th scope="col" class="bg-danger text-white">Name</th>
+                                    <th scope="col" class="bg-danger text-white">Address</th>
+                                    <th scope="col" class="bg-danger text-white">Salary</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbody-customer" class="table-group-divider"></tbody>
+                            </table>
+                        </section>
+
+                    </section>
+                    <section id="right-content" class="d-flex col-8 col-sm-4 col-md-3 justify-content-end rounded-4">
+                        <section class="col-8 p-2 bg-light rounded-4 w-100">
+                            <form action="customer" id="customerForm">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtCustomerId" placeholder="name@example.com" name="id">
+                                <label for="txtCustomerId">Customer ID</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtCustomerName" placeholder="name@example.com" name="name">
+                                <label for="txtCustomerName">Customer Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtCustomerAddress" placeholder="name@example.com" name="address">
+                                <label for="txtCustomerAddress">Address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="txtCustomerSalary" placeholder="name@example.com" name="salary">
+                                <label for="txtCustomerSalary">Salary</label>
+                            </div>
+                            </form>
+                            <section class="d-flex flex-wrap justify-content-center gap-2">
+                                <button id="btnCustomerSave" type="button" class="btn btn-outline-success">Save</button>
+                                <button id="btnCustomerUpdate" type="button" class="btn btn-outline-primary">Update</button>
+                                <button id="btnCustomerDelete" type="button" class="btn btn-outline-danger">Delete</button>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section id="item-page">
+            <section id="item-title" class=" d-flex mt-5 mb-4 justify-content-center">
+            </section>
+            <section id="item-content" class="container-fluid py-4 rounded-4">
+                <section class="d-flex justify-content-around flex-wrap-reverse">
+                    <section id="item-left-content" class="col-12 col-sm-8 my-2">
+                        <section id="item-search" class="mb-5">
+                            <form class="row gx-3 gy-2 align-items-center">
+                                <div class="mb-3 ms-3 me-3 mt-3 ">
+                                    <label class="fw-bold" for="ItemIdSearch">Search Item :</label>
+                                    <input class="form-control me-2 mt-2" id="ItemIdSearch"
+                                           placeholder="Input Item Code"
+                                           type="search">
+                                </div>
+                            </form>
+                        </section>
+
+                        <!--                    table-->
+                        <section id="item-table" class="p-2 rounded-4 bg-light">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="bg-danger text-white">Code</th>
+                                    <th scope="col" class="bg-danger text-white">Name</th>
+                                    <th scope="col" class="bg-danger text-white">Quantity</th>
+                                    <th scope="col" class="bg-danger text-white">Price</th>
+                                </tr>
+                                </thead>
+                                <tbody id="ItemTable" class="table-group-divider"></tbody>
+                            </table>
+                        </section>
+
+                    </section>
+                    <section id="item-right-content" class="d-flex col-8 col-sm-4 col-md-3 justify-content-end rounded-4">
+                        <section class="col-8 p-2 bg-light rounded-4 w-100">
+                            <form action="item" id="itemForm">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtItemID" placeholder="name@example.com" name="code">
+                                <label for="txtItemID">Item Code</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtItemName" placeholder="name@example.com" name="description">
+                                <label for="txtItemName">Item Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtItemQty" placeholder="name@example.com" name="qty">
+                                <label for="txtItemQty">Item Quantity</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtItemPrice" placeholder="name@example.com" name="unitPrice">
+                                <label for="txtItemPrice">Price</label>
+                            </div>
+                            </form>
+                            <section class="d-flex flex-wrap justify-content-center gap-2">
+                                <button id="btnAddItem" type="button" class="btn btn-outline-success">Save</button>
+                                <button id="btnUpdateItem" type="button" class="btn btn-outline-primary">Update</button>
+                                <button id="btnDeleteItem" type="button" class="btn btn-outline-danger">Delete</button>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section id="order-page">
+            <div class="row justify-content-around" style="height: min-content; margin: 20px; position: relative; bottom: -50px">
+
+                <!-- Order Invoice Details Section Start -->
+                <div class="col-10 col-md-5 col-lg-4 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
+                    <h5 class="text-center p-2 text-light rounded-3" style="background: red">Invoice Details</h5>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="orderId">Order ID :</label>
+                            <input class="form-control border-dark" disabled id="orderId" type="text" value="ODI-001">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="orderDate">Order Date :</label>
+                            <input class="form-control border-dark" id="orderDate" type="date">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="cmbCustomerId">Customer ID :</label>
+                            <select aria-label="Default select example" class="form-select border-dark" id="cmbCustomerId"
+                                    value="Customer ID">
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="customerName">Name :</label>
+                            <input class="form-control border-dark" disabled id="customerName" type="text">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="customerAddress">Address :</label>
+                            <input class="form-control border-dark" disabled id="customerAddress" type="text">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="customerSalary">Salary :</label>
+                            <input class="form-control border-dark" disabled id="customerSalary" type="text">
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Invoice Details Section End -->
+
+                <!-- Order Item Details Section Start -->
+                <div class="col-10 col-md-5 col-lg-4 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
+                    <h5 class="text-center p-2 text-light rounded-3" style="background: red">Item Details</h5>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="cmbItemCode">Item Code :</label>
+                            <select aria-label="Default select example" class="form-select border-dark" id="cmbItemCode"
+                                    value="Item Code">
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="itemName">Item Name :</label>
+                            <input class="form-control border-dark" disabled id="itemName" type="text">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="itemPrice">Unit Price :</label>
+                            <input class="form-control border-dark" disabled id="itemPrice" type="text">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="qtyOnHand">Qty On Hand :</label>
+                            <input class="form-control border-dark" disabled id="qtyOnHand" type="text">
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="buyQty">Buy Qty :</label>
+                            <input class="form-control border-dark" id="buyQty" type="text">
+                            <strong class="control-error" id="lblCheckQty"></strong>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 mt-4 ">
+                            <button class="btn btn-primary rounded-2" id="btnAddToCart" type="button">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Item Details Section End -->
+
+                <!-- Order Details Section Start -->
+                <div class="col-10 col-md-5 col-lg-3 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
+                    <h5 class="text-center bg-danger p-2 text-light rounded-3">Payment Details</h5>
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="txtTotal">Total :</label>
+                            <input class="form-control border-dark" disabled id="txtTotal" type="number">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="txtDiscount">Discount :</label>
+                            <input class="form-control border-dark" id="txtDiscount" role="spinbutton" type="number">
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="txtSubTotal">Sub Total :</label>
+                            <input class="form-control border-dark" disabled id="txtSubTotal" type="number">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="txtCash">Cash :</label>
+                            <input class="form-control border-dark" id="txtCash" type="text">
+                            <strong class="control-error" id="lblCheckSubtotal"></strong>
+                        </div>
+                    </div>
+
+                    <div class="row mt-1">
+                        <div class="col-12 col-md-6 col-lg-6">
+                            <label class="fw-bold" for="txtBalance">Balance :</label>
+                            <input class="form-control border-dark" disabled id="txtBalance" type="number">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-6 mt-4">
+                            <button class="btn btn-success rounded-2" id="btnPurchase" type="submit">Purchase</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Details Section End -->
+
+                <!--clear All Button Section Start-->
+                <div class="d-grid col-12 col-md-2 mt-4">
+                    <button class="btn btn-danger rounded-2 bold sectionBorder" id="btnClearAll" type="button">Clear All
+                    </button>
+                </div>
+                <!--clear All Button Section end-->
+
+                <!-- View Cart Details Table Start -->
+                <div class="row mt-1 mt-md-2 mt-lg-3 justify-content-around" style="height: 315px;">
+                    <div class="col-11 justify-content-around sectionBorder" style="height: 285px; background: white">
+                        <div class="PlaceOrderTableDiv overflow-auto" style="height: 265px;">
+                            <table class="table table-success table-striped table-bordered table-hover">
+                                <thead class="text-light table-dark text-center  table-bordered sticky-top">
+                                <tr>
+                                    <th>Item Code</th>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Order Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tblAddToCart"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- View Cart Details Table End -->
+
+            </div>
+
+        </section>
+
+        <section id="orderDetail-page">
+            <div class="row justify-content-around" style="height: max-content; margin: 4px;">
+
+                <div class="row justify-content-evenly h-50">
+                    <!-- Table Order Details-->
+                    <section
+                            class="d-flex flex-column h-100 col-10 col-xl-11 shadow-lg rounded-3 align-items-center pt-3 sectionBorder "
+                            style="background: white; position: relative; bottom: -100px">
+                        <h4 class="text-center  p-2 text-light rounded-5 col-12 " style="background: #fd3827">Orders
+                            Details</h4>
+                        <!-- View Order Details Table Start -->
+                        <div class="col-11 justify-content-around " style="height: 250px;">
+                            <div class="PlaceOrderTableDiv overflow-auto" style="height: 230px;">
+                                <table class="table table-white table-striped table-bordered table-hover">
+                                    <thead class="text-light table-dark text-center  table-bordered sticky-top">
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Item Code</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblOrderDetails"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- View Order Details Table End -->
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="assects/bootsrap/css/bootstrap.min.css"></script>
+    <script src="assects/iQuery/jquery-3.7.0.min.js"></script>
+    <script src="controllers/DashboardController.js"></script>
+    <script src="controllers/CustomerController.js"></script>
+    <script src="util/validation.js"></script>
+    <script src="controllers/ItemController.js"></script>
+    <script src="controllers/PurchaseOrderController.js"></script>
+    <script src="controllers/OrderViewsController.js"></script>
+</body>
+</html>
