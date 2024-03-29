@@ -22,7 +22,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.32" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.32" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.3.32" />
-          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.30" />
+          <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.32" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.16.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.16.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.16.0" />
@@ -52,6 +52,8 @@
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.21.9" />
           <element id="library" level="project" name="Maven: org.modelmapper:modelmapper:3.1.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2" />
+          <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:8.0.1.Final" />
+          <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:3.0.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

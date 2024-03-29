@@ -19,7 +19,9 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
-        <datasource-mapping />
+        <datasource-mapping>
+          <factory-entry name="Back-End-POS" />
+        </datasource-mapping>
         <naming-strategy-map />
       </configuration>
     </facet>
@@ -54,7 +56,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.32" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.32" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.32" level="project" />
-    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.30" level="project" />
+    <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.18.32" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.16.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.16.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.16.0" level="project" />
@@ -84,5 +86,7 @@
     <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.21.9" level="project" />
     <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:3.1.1" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.2" level="project" />
+    <orderEntry type="library" name="Maven: org.hibernate.validator:hibernate-validator:8.0.1.Final" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.validation:jakarta.validation-api:3.0.2" level="project" />
   </component>
 </module>
