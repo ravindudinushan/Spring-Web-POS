@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import(JPAConfig.class)
-@ComponentScan(basePackages = "lk.ijse.gdse66.spring.service")
+@ComponentScan(basePackages = {"lk.ijse.gdse66.spring.service","lk.ijse.gdse66.spring.repo"})
 public class WebRootConfig {
     @Bean
     public ModelMapper modelMapper(){
