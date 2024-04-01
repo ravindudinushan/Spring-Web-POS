@@ -21,7 +21,7 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dmds = new DriverManagerDataSource();
-        dmds.setUrl("jdbc:mysql://localhost:3306/springWebPOS?createDatabaseIfNotExist=true");
+        dmds.setUrl("jdbc:mysql://localhost:3306/spring_web_pos?createDatabaseIfNotExist=true");
         dmds.setUsername("root");
         dmds.setPassword("1234");
         dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
