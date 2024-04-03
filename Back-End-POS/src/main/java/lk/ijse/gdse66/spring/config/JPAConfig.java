@@ -1,6 +1,7 @@
 package lk.ijse.gdse66.spring.config;
 
 import jakarta.persistence.EntityManagerFactory;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -14,10 +15,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "lk.ijse.gdse66.spring.repo")
+@Configuration
 public class JPAConfig {
+
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dmds = new DriverManagerDataSource();
@@ -30,8 +32,9 @@ public class JPAConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true); // Automatically  create tables
+        vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
         vendorAdapter.setDatabase(Database.MYSQL);
         vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
@@ -48,5 +51,10 @@ public class JPAConfig {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory);
         return txManager;
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
     }
 }
