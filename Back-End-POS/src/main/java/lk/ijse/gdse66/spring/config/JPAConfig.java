@@ -4,6 +4,8 @@ import jakarta.persistence.EntityManagerFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -18,15 +20,22 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "lk.ijse.gdse66.spring.repo")
 @Configuration
+@PropertySource("classpath:application.properties")
 public class JPAConfig {
+
+    Environment env;
+
+    public JPAConfig(Environment env) {
+        this.env = env;
+    }
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dmds = new DriverManagerDataSource();
-        dmds.setUrl("jdbc:mysql://localhost:3306/spring_web_pos?createDatabaseIfNotExist=true");
-        dmds.setUsername("root");
-        dmds.setPassword("1234");
-        dmds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dmds.setUrl(env.getRequiredProperty("spring.datasource.url"));
+        dmds.setUsername(env.getRequiredProperty("spring.datasource.username"));
+        dmds.setPassword(env.getRequiredProperty("spring.datasource.password"));
+        dmds.setDriverClassName(env.getRequiredProperty("spring.datasource.driverClassName"));
         return dmds;
     }
 
@@ -37,7 +46,7 @@ public class JPAConfig {
         vendorAdapter.setGenerateDdl(true);
         vendorAdapter.setShowSql(true);
         vendorAdapter.setDatabase(Database.MYSQL);
-        vendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        vendorAdapter.setDatabasePlatform(env.getRequiredProperty("spring.jpa.hibernate.dialect"));
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setJpaVendorAdapter(vendorAdapter);
