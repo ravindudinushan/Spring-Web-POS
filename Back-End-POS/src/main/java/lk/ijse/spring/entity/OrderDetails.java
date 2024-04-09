@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@ToString
 @IdClass(OrderItem_PK.class)
 public class OrderDetails {
     @Id

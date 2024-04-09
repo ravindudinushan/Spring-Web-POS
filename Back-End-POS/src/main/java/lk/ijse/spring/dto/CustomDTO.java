@@ -8,7 +8,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class CustomDTO {
     private String value;
     private int count;

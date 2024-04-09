@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Item {
     @Id
     String code;

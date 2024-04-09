@@ -12,7 +12,6 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Customer {
     @Id
     private String id;
