@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 @Configuration
-@EnableTransactionManagement //AOP Usage
+@EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "lk.ijse.spring.repo")
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
@@ -27,7 +27,7 @@ public class JPAConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va) {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-        factoryBean.setPackagesToScan(env.getRequiredProperty("pro.entity"));
+        factoryBean.setPackagesToScan(env.getRequiredProperty("spring.datasource.entity"));
         factoryBean.setDataSource(ds);
         factoryBean.setJpaVendorAdapter(va);
         return factoryBean;
@@ -36,18 +36,17 @@ public class JPAConfig {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName(env.getRequiredProperty("pro.driver"));
-        ds.setUrl(env.getRequiredProperty("pro.url"));
-        ds.setUsername(env.getRequiredProperty("pro.username"));
-        ds.setPassword(env.getRequiredProperty("pro.password"));
+        ds.setDriverClassName(env.getRequiredProperty("spring.datasource.driver"));
+        ds.setUrl(env.getRequiredProperty("spring.datasource.url"));
+        ds.setUsername(env.getRequiredProperty("spring.datasource.username"));
+        ds.setPassword(env.getRequiredProperty("spring.datasource.password"));
         return ds;
     }
-
 
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter va = new HibernateJpaVendorAdapter();
-        va.setDatabasePlatform(env.getRequiredProperty("pro.dial"));
+        va.setDatabasePlatform(env.getRequiredProperty("spring.datasource.dial"));
         va.setDatabase(Database.MYSQL);
         va.setGenerateDdl(true);
         va.setShowSql(true);
