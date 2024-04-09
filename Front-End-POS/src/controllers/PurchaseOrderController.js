@@ -1,9 +1,11 @@
+// let baseUrl = "http://localhost:8080/app/";
+
 $("#btnPurchase").attr('disabled', true);
 $("#btnAddToCart").attr('disabled', true);
 
 /**
  * Date
- * */
+ **/
 function setDates() {
 
     const date = new Date();
@@ -19,7 +21,7 @@ function setDates() {
 
 /**
  * Order ID
- * */
+ **/
 function generateOrderID() {
     $("#orderId").val("ODI-001");
     $.ajax({
@@ -61,7 +63,10 @@ $.ajax({
             $("#cmbCustomerId").append(`<option>${id}</option>`);
         }
         generateOrderID();
+        console.log(res.message);
     }, error: function (error) {
+        let message = JSON.parse(error.responseText).message;
+        console.log(message);
     }
 
 });
@@ -75,30 +80,35 @@ $("#cmbCustomerId").click(function () {
         contentType: "application/json",
         dataType: "json",
         success: function (res) {
+            console.log(res);
             $("#customerName").val(res.name);
             $("#customerAddress").val(res.address);
             $("#customerSalary").val(res.salary);
         },
         error: function (error) {
-
+            let message = JSON.parse(error.responseText).message;
+            console.log(message);
         }
     })
 
 });
 
 /**
- * Item Select Combo
+ Item Select Combo
  * */
 $("#cmbItemCode").empty();
 $.ajax({
     url: baseUrl + "item?option=loadAllItem", method: "GET", dataType: "json", success: function (res) {
+        console.log(res);
         for (let i of res.data) {
             let code = i.code;
 
             $("#cmbItemCode").append(`<option>${code}</option>`);
         }
+        console.log(res.message);
     }, error: function (error) {
-
+        let message = JSON.parse(error.responseText).message;
+        console.log(message);
     }
 });
 
@@ -116,13 +126,14 @@ $("#cmbItemCode").click(function () {
             $("#qtyOnHand").val(res.qty);
         },
         error: function (error) {
-
+            let message = JSON.parse(error.responseText).message;
+            console.log(message);
         }
     })
 });
 
 /**
- * Items Details
+  Items Details
  * */
 
 let itemCode;
@@ -139,7 +150,7 @@ let discount = 0;
 let subTotal = 0;
 
 /**
- * Place order
+ Place order
  * */
 let tableRow = [];
 $("#btnAddToCart").on("click", function () {
@@ -169,8 +180,7 @@ $("#btnAddToCart").on("click", function () {
     }
 
     /**
-     * Place order
-     * Table
+     Place order Table
      * */
     $("#tblAddToCart>tr").click('click', function () {
 
@@ -191,7 +201,6 @@ $("#btnAddToCart").on("click", function () {
 });
 
 /**
- * Logics
  * Place order QtyOnHand
  * */
 function reduceQty(orderQty) {
@@ -202,7 +211,6 @@ function reduceQty(orderQty) {
 }
 
 /**
- * Logics
  * Place order
  * Calculate Total
  * */
@@ -213,7 +221,6 @@ function calcTotal(amount) {
 }
 
 /**
- * Logics
  * Place order
  * Manage Available Qty
  * */
@@ -229,7 +236,6 @@ function manageQtyOnHand(preQty, nowQty) {
 }
 
 /**
- * Logics
  * Place order
  * Total
  * */
@@ -242,7 +248,6 @@ function manageTotal(preTotal, nowTotal) {
 }
 
 /**
- * Logics
  * Place order
  * Table Load
  * */
@@ -262,7 +267,6 @@ function loadCartTableDetail() {
 }
 
 /**
- * Logics
  * Place order
  * Enter BuyQty and Check Qty On Hand
  * */
@@ -281,7 +285,6 @@ $(document).on("change keyup blur", "#buyQty", function () {
 });
 
 /**
- * Logics
  * Place order
  * Enter Discount and sub Total display
  * */
@@ -295,7 +298,6 @@ $(document).on("change keyup blur", "#txtDiscount", function () {
 });
 
 /**
- * Logics
  * Place order
  * Enter Cash and Balance display
  * */
@@ -313,9 +315,7 @@ $(document).on("change keyup blur", "#txtCash", function () {
     }
 });
 
-
 /**
- * Logics
  * Place order
  * Purchase Order button
  * */
@@ -349,13 +349,14 @@ $("#btnPurchase").click(function () {
         dataType: "json",
         data: JSON.stringify(orderOb),
         success: function (res) {
-            alert("Order Purchase Successfully!");
+            saveUpdateAlert("Order", res.message);
             generateOrderID();
+            console.log("check")
         },
         error: function (error) {
             console.log("error")
             let message = JSON.parse(error.responseText).message;
-            alert("Order Purchase Unsuccessfully!");
+            unSuccessUpdateAlert("Order", message);
         }
     });
 
@@ -375,7 +376,6 @@ $("#btnPurchase").click(function () {
 });
 
 /**
- * Logics
  * Place order
  * Clear Method
  * */
@@ -387,10 +387,35 @@ function clearDetails() {
 }
 
 /**
- * Logics
  * Place order
  * Clear Button
  * */
 $("#btnClearAll").click(function () {
     clearDetails();
+});
+
+/**
+ * Place order
+ * Remove Row
+ * */
+
+$("#tblAddToCart").dblclick(function () {
+    Swal.fire({
+        title: 'Do you want to Delete the Select row?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        customClass: {
+            actions: 'my-actions', cancelButton: 'order-1 right-gap', confirmButton: 'order-2', denyButton: 'order-3',
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $(this).children('tr').eq(0).remove();
+            Swal.fire('Delete!', '', 'success')
+        } else if (result.isDenied) {
+            Swal.fire('Select row are not Delete', '', 'info')
+        }
+    })
+
 });

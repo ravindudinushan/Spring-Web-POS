@@ -1,3 +1,4 @@
+// let baseUrl = "http://localhost:8080/app/";
 loadAllItems();
 
 $("#btnAddItem").attr('disabled', true);
@@ -30,7 +31,7 @@ function generateItemID() {
 }
 
 /**
- * Button Add New Item
+ * Add New Item
  * */
 $("#btnAddItem").click(function () {
     let formData = $("#itemForm").serialize();
@@ -40,17 +41,17 @@ $("#btnAddItem").click(function () {
         data: formData,
         dataType: "json",
         success: function (res) {
-            alert("Item Save Successfully!");
+            saveAlert("item");
             loadAllItems();
         },
         error: function (error) {
-            alert("Item Save Unsuccessfully!");
+            unSuccessUpdateAlert("item", JSON.parse(error.responseText).message);
         }
     });
 });
 
 /**
- * clear input fields Values Method
+ * clear input fields Values
  * */
 function setTextFieldValues(code, description, qty, price) {
     $("#txtItemID").val(code);
@@ -66,7 +67,7 @@ function setTextFieldValues(code, description, qty, price) {
 }
 
 /**
- * load all Item Method
+ * load all item
  * */
 function loadAllItems() {
     $("#ItemTable").empty();
@@ -92,13 +93,14 @@ function loadAllItems() {
             console.log("res message: ", res.message);
         },
         error: function (error) {
-
+            let message = JSON.parse(error.responseText).message;
+            console.log(message);
         }
     });
 }
 
 /**
- * Table Listener Click and Load textFields
+ * Table Click and Load textFields
  * */
 function blindClickEvents() {
     $("#ItemTable>tr").on("click", function () {
@@ -120,7 +122,7 @@ function blindClickEvents() {
 
 
 /**
- * Search id and Load Table
+ * Search id
  * */
 $("#ItemIdSearch").on("keypress", function (event) {
     if (event.which === 13) {
@@ -141,19 +143,15 @@ $("#ItemIdSearch").on("keypress", function (event) {
             error: function (error) {
                 loadAllItems();
                 let message = JSON.parse(error.responseText).message;
-                alert(message);
+                emptyMassage(message);
             }
         })
     }
 });
 
-/**
- * Item Update
+/**Item Update
  * */
 
-/**
- * Update Action
- * */
 $("#btnUpdateItem").click(function () {
 
     let code = $("#txtItemID").val();
@@ -174,23 +172,20 @@ $("#btnUpdateItem").click(function () {
         contentType: "application/json",
         data: JSON.stringify(itemOb),
         success: function (res) {
-            alert("Item Update Successfully!");
+            saveUpdateAlert("Item");
             loadAllItems();
         },
         error: function (error) {
-            alert("Item Update Unuccessfully!");
+            let message = JSON.parse(error.responseText).message;
+            unSuccessUpdateAlert("Item", message);
         }
     });
 });
-
 
 /**
  * Item Delete
  * */
 
-/**
- * Delete Action
- * */
 $("#btnDeleteItem").click(function () {
 
     let itCode = $("#txtItemID").val();
@@ -210,19 +205,16 @@ $("#btnDeleteItem").click(function () {
         contentType: "application/json",
         data: JSON.stringify(itemOb),
         success: function (res) {
-            alert("Item Delete Successfully!");
+            deleteAlert("Item");
             loadAllItems();
         },
         error: function (error) {
-            alert("Item Delete Unsuccessfully!");
+            let message = JSON.parse(error.responseText).message;
+            unSuccessUpdateAlert("Item", message);
         }
     });
 });
 
-
-/**
- * Auto Forces Input Fields Save
- * */
 $("#txtItemID").focus();
 const regExItemCode = /^(I00-)[0-9]{3,4}$/;
 const regExItemName = /^[A-z ]{3,20}$/;

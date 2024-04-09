@@ -31,29 +31,29 @@ function generateCustomerID() {
 }
 
 /**
- * Button Add New Customer
+ * Button Save Customer
  * */
 
 $("#btnCustomerSave").click(function () {
 
     let formData = $("#customerForm").serialize();
-    // console.log("aaaaaaaaaaaaaa")
     console.log(formData);
     $.ajax({
         url: baseUrl + "customer", method: "post",
         data: formData,
         success: function (res) {
-            alert("Customer Save Successfully!");
+            saveAlert("Customer");
             loadAllCustomer();
         }, error: function (error) {
-            alert("Customer Save Unsuccessfully!");
+            console.log(error.responseText);
+            unSuccessUpdateAlert("Customer", JSON.parse(error.responseText).message);
         }
     });
 });
 
 
 /**
- * clear input fields Values Method
+ * clear input fields Values
  * */
 function setTextFieldValue(id, name, address, salary) {
     $("#txtCustomerId").val(id);
@@ -68,7 +68,7 @@ function setTextFieldValue(id, name, address, salary) {
 }
 
 /**
- * load all customers Method
+ * load all customers
  * */
 function loadAllCustomer() {
     $("#tbody-customer").empty();
@@ -98,7 +98,7 @@ function loadAllCustomer() {
 }
 
 /**
- * Table Listener Click and Load textFields
+ * Table Click and Load textFields
  * */
 function bindClickEvents() {
     console.log("click");
@@ -122,7 +122,7 @@ function bindClickEvents() {
 
 
 /**
- * Search id and Load Table
+ * Search id
  * */
 $("#searchCusId").on("keypress", function (event) {
     if (event.which === 13) {
@@ -144,7 +144,7 @@ $("#searchCusId").on("keypress", function (event) {
             error: function (error) {
                 loadAllCustomer();
                 let message = JSON.parse(error.responseText).message;
-                alert(message);
+                emptyMassage(message);
             }
         })
     }
@@ -172,11 +172,13 @@ $("#btnCustomerUpdate").click(function () {
         contentType: "application/json",
         data: JSON.stringify(customerOb),
         success: function (res) {
-            alert("Customer Update Successfully!");
+            saveUpdateAlert("Customer", res.message);
             loadAllCustomer();
         },
         error: function (error) {
-            alert("Customer Update Unsuccessfully!");
+            console.log(error.responseText);
+            let message = JSON.parse(error.responseText).message;
+            unSuccessUpdateAlert("Customer", message);
         }
     });
 });
@@ -185,9 +187,6 @@ $("#btnCustomerUpdate").click(function () {
  * Customer Delete
  * */
 
-/**
- * Delete Action
- * */
 $("#btnCustomerDelete").click(function () {
 
     let cusId = $("#txtCustomerId").val();
@@ -205,11 +204,12 @@ $("#btnCustomerDelete").click(function () {
         contentType: "application/json",
         data: JSON.stringify(customerOb),
         success: function (res) {
-            alert("Customer Delete Successfully!");
+            deleteAlert("Customer");
             loadAllCustomer();
         },
         error: function (error) {
-            alert("Customer Delete Unsuccessfully!");
+            let message = JSON.parse(error.responseText).message;
+            unSuccessUpdateAlert("Customer", message);
         }
     });
 });

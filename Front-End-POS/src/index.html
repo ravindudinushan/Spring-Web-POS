@@ -4,45 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS System</title>
-    <link rel="stylesheet" href="assects/necolas.github.io_normalize.css_8.0.1_normalize.css">
-    <link rel="stylesheet" href="assects/bootsrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/necolas.github.io_normalize.css_8.0.1_normalize.css">
+    <link rel="stylesheet" href="assets/bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow custom-navbar bg-body-tertiary">
-            <div class="container-fluid" style="background-color: #ffffff; height: 60px;">
-                <img src="assects/assets/1.png" alt="foodcity" class="img-responsive custom-logo"
-                     style="height: 50px; width: 50px; border: 2px solid rgb(226, 226, 226); border-radius: 50%; margin: 10px;">
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                        aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid" style="background-color: #6eff65; height: 70px; margin-top: -8px;">
+                <div id="logo-div" class="d-flex">
+                    <h1 class="navbar-brand me-5 ms-2 fs-4">POS System</h1>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent"
-                     style="background-color: #ffffff; margin: 30px;">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin: 20px;">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                    <ul class="navbar-nav gap-2">
                         <li id="home-nav" class="nav-item">
-                            <!--                            <a class="nav-link active fw-medium text-body-secondary" aria-current="page" href="#"></i>Home</a>-->
-                            <a class="nav-link fw-medium" href="#home-page" style="font-size: 15px; color: red;">Home</a>
+<!--                            <a class="nav-link active fw-medium text-body-secondary" aria-current="page" href="#"></i>Home</a>-->
+                            <a class="nav-link fw-medium" href="#home-page" style="font-size: 15px">Home</a>
                         </li>
                         <li id="customer-nav" class="nav-item">
-                            <a class=" nav-link fw-medium" href="#customer-page" style="font-size: 15px; color: red;">Customers</a>
+                            <a class=" nav-link fw-medium" href="#customer-page" style="font-size: 15px">Customers</a>
                         </li>
                         <li id="item-nav" class="nav-item">
-                            <a class="nav-link fw-medium" href="#item-page" style="font-size: 15px; color: red;">Items</a>
+                            <a class="nav-link fw-medium" href="#item-page" style="font-size: 15px">Items</a>
                         </li>
                         <li id="order-nav" class="nav-item">
-                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px; color: red;">Place Orders</a>
+                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px">Place Orders</a>
                         </li>
                         <li id="orderDetail-nav" class="nav-item">
-                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px; color: red;">Order Details</a>
+                            <a class="nav-link fw-medium" href="#order-page" style="font-size: 15px">Order Details</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button type="button" class="btn btn-outline-light" style="background-color: red;">Search</button>
-                    </form>
+                    <ul class="navbar-nav gap-2">
+                        <li id="sign-up-nav" class="nav-item">
+                            <a class="nav-link" href="#"><i class="fs-5 fa-solid fa-user-plus"></i></a>
+                        </li>
+                        <li id="log-in-nav" class="nav-item">
+                            <a class="nav-link" href="#"><i class="fs-5 fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -51,7 +52,23 @@
     <main>
         <section id="home-page">
             <div class="container text-center" style="margin-bottom: 10px; position: relative; top: 10rem;">
-
+                <div class="row">
+                    <div class="col" id="manageCustomerClick">
+                        <h2 style="color: green;">Customer</h2>
+                        <img src="assets/images/customer.png" alt="...">
+                        <h2>0</h2>
+                    </div>
+                    <div class="col" id="manageItemClick">
+                        <h2 style="color: green;">Item</h2>
+                        <img src="assets/images/item.png" alt="...">
+                        <h2>0</h2>
+                    </div>
+                    <div class="col" id="manageOrderClick">
+                        <h2 style="color: green;">Order</h2>
+                        <img src="assets/images/place_order.png" alt="...">
+                        <h2>0</h2>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -82,10 +99,10 @@
                             <table id="tableCustomer" class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="bg-danger text-white">ID</th>
-                                    <th scope="col" class="bg-danger text-white">Name</th>
-                                    <th scope="col" class="bg-danger text-white">Address</th>
-                                    <th scope="col" class="bg-danger text-white">Salary</th>
+                                    <th scope="col" class="bg-success text-white">ID</th>
+                                    <th scope="col" class="bg-success text-white">Name</th>
+                                    <th scope="col" class="bg-success text-white">Address</th>
+                                    <th scope="col" class="bg-success text-white">Salary</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbody-customer" class="table-group-divider"></tbody>
@@ -146,10 +163,10 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th scope="col" class="bg-danger text-white">Code</th>
-                                    <th scope="col" class="bg-danger text-white">Name</th>
-                                    <th scope="col" class="bg-danger text-white">Quantity</th>
-                                    <th scope="col" class="bg-danger text-white">Price</th>
+                                    <th scope="col" class="bg-success text-white">Code</th>
+                                    <th scope="col" class="bg-success text-white">Name</th>
+                                    <th scope="col" class="bg-success text-white">Quantity</th>
+                                    <th scope="col" class="bg-success text-white">Price</th>
                                 </tr>
                                 </thead>
                                 <tbody id="ItemTable" class="table-group-divider"></tbody>
@@ -189,11 +206,11 @@
         </section>
 
         <section id="order-page">
-            <div class="row justify-content-around" style="height: min-content; margin: 20px; position: relative; bottom: -50px">
+            <div class="row justify-content-around" style="height: min-content; margin: 20px;">
 
                 <!-- Order Invoice Details Section Start -->
                 <div class="col-10 col-md-5 col-lg-4 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
-                    <h5 class="text-center p-2 text-light rounded-3" style="background: red">Invoice Details</h5>
+                    <h5 class="text-center p-2 text-light rounded-3" style="background: #16A085">Invoice Details</h5>
                     <div class="row mt-1">
                         <div class="col-12 col-md-6 col-lg-6">
                             <label class="fw-bold" for="orderId">Order ID :</label>
@@ -231,7 +248,7 @@
 
                 <!-- Order Item Details Section Start -->
                 <div class="col-10 col-md-5 col-lg-4 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
-                    <h5 class="text-center p-2 text-light rounded-3" style="background: red">Item Details</h5>
+                    <h5 class="text-center p-2 text-light rounded-3" style="background: #16A085">Item Details</h5>
                     <div class="row mt-1">
                         <div class="col-12 col-md-6 col-lg-6">
                             <label class="fw-bold" for="cmbItemCode">Item Code :</label>
@@ -269,7 +286,7 @@
 
                 <!-- Order Details Section Start -->
                 <div class="col-10 col-md-5 col-lg-3 p-3 mt-3 rounded-3 sectionBorder" style="background-color: white">
-                    <h5 class="text-center bg-danger p-2 text-light rounded-3">Payment Details</h5>
+                    <h5 class="text-center bg-secondary p-2 text-light rounded-3">Payment Details</h5>
                     <div class="row mt-1">
                         <div class="col-12 col-md-6 col-lg-6">
                             <label class="fw-bold" for="txtTotal">Total :</label>
@@ -341,16 +358,40 @@
             <div class="row justify-content-around" style="height: max-content; margin: 4px;">
 
                 <div class="row justify-content-evenly h-50">
+
+                    <!-- Table Order -->
+                    <section
+                            class="d-flex flex-column h-100 col-10 col-xl-11 shadow-lg rounded-3 align-items-center pt-3 mt-2 mb-4 sectionBorder "
+                            style="background: white">
+                        <h4 class="text-center p-2 text-light rounded-5 col-12 ubFt" style="background: #16A085">Orders</h4>
+                        <!-- View Orders Table Start -->
+                        <div class="col-11 justify-content-around " style="height: 250px;">
+                            <div class="PlaceOrderTableDiv overflow-auto" style="height: 230px;">
+                                <table class="table table-success table-striped table-bordered table-hover">
+                                    <thead class="text-light table-dark text-center  table-bordered sticky-top">
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Order Date</th>
+                                        <th>Customer Id</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tblOrder"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- View Orders Table End -->
+
                     <!-- Table Order Details-->
                     <section
                             class="d-flex flex-column h-100 col-10 col-xl-11 shadow-lg rounded-3 align-items-center pt-3 sectionBorder "
-                            style="background: white; position: relative; bottom: -100px">
-                        <h4 class="text-center  p-2 text-light rounded-5 col-12 " style="background: #fd3827">Orders
+                            style="background: white">
+                        <h4 class="text-center  p-2 text-light rounded-5 col-12 " style="background: #16A085">Orders
                             Details</h4>
                         <!-- View Order Details Table Start -->
                         <div class="col-11 justify-content-around " style="height: 250px;">
                             <div class="PlaceOrderTableDiv overflow-auto" style="height: 230px;">
-                                <table class="table table-white table-striped table-bordered table-hover">
+                                <table class="table table-success table-striped table-bordered table-hover">
                                     <thead class="text-light table-dark text-center  table-bordered sticky-top">
                                     <tr>
                                         <th>Order Id</th>
@@ -372,13 +413,15 @@
         </section>
     </main>
 
-    <script src="assects/bootsrap/css/bootstrap.min.css"></script>
-    <script src="assects/iQuery/jquery-3.7.0.min.js"></script>
+    <script src="assets/bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/js/code.jquery.com_jquery-3.7.1.min.js"></script>
     <script src="controllers/DashboardController.js"></script>
     <script src="controllers/CustomerController.js"></script>
     <script src="util/validation.js"></script>
+    <script src="util/alert.js"></script>
     <script src="controllers/ItemController.js"></script>
     <script src="controllers/PurchaseOrderController.js"></script>
     <script src="controllers/OrderViewsController.js"></script>
+    <script rel="script" src="assets/sweetalert2-11.6.16/sweetalert2.all.js"></script>
 </body>
 </html>

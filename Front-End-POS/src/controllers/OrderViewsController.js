@@ -1,6 +1,31 @@
-loadAllOrderDetail();
+// let baseUrl = "http://localhost:8080/app/";
+loadAllOrders();
+loadAllOrderDetails();
 
-function loadAllOrderDetail() {
+function loadAllOrders() {
+    $("#tblOrder").empty();
+    $.ajax({
+        url: baseUrl+ "order?option=LoadOrders", method: "GET", dataType: "json", success: function (res) {
+            console.log(res);
+
+            for (let i of res.data) {
+                let orderId = i.orderId;
+                let date = i.date;
+                let cusId = i.cusId;
+
+                let row = "<tr><td>" + orderId + "</td><td>" + date + "</td><td>" + cusId + "</td></tr>";
+                $("#tblOrder").append(row);
+            }
+            console.log(res.message);
+        }, error: function (error) {
+            let message = JSON.parse(error.responseText).message;
+            console.log(message);
+        }
+
+    });
+}
+
+function loadAllOrderDetails() {
     $("#tblOrderDetails").empty();
     $.ajax({
         url: baseUrl+ "order?option=LoadOrderDetails", method: "GET", dataType: "json", success: function (res) {
@@ -14,10 +39,11 @@ function loadAllOrderDetail() {
 
                 let row = "<tr><td>" + OrderId + "</td><td>" + code + "</td><td>" + qty + "</td><td>" + unitPrice + "</td></tr>";
                 $("#tblOrderDetails").append(row);
-
             }
+            console.log(res.message);
         }, error: function (error) {
-
+            let message = JSON.parse(error.responseText).message;
+            console.log(message);
         }
 
     });
