@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Back-End-POS" target="17" />
+      <module name="Back-End-POS" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
