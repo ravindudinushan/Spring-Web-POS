@@ -5,10 +5,6 @@ $("#btnAddToCart").attr('disabled', true);
 
 /**
  * Invoice Details
- * */
-
-/**
- * Invoice Details
  * Order ID
  * */
 function generateOrderID() {
