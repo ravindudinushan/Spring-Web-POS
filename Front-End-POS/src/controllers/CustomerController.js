@@ -8,12 +8,12 @@ $("#btnCustomerDelete").attr('disabled', true);
 function generateCustomerID() {
     $("#txtCustomerId").val("C00-001");
     $.ajax({
-        url: baseUrl + "customer?option=CustomerIdGenerate",
+        url: baseUrl + "customer/CustomerIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
         success: function (resp) {
-            let id = resp.id;
+            let id = resp.value;
             let tempId = parseInt(id.split("-")[1]);
             tempId = tempId + 1;
             if (tempId <= 9) {
@@ -73,7 +73,7 @@ function setTextFieldValue(id, name, address, salary) {
 function loadAllCustomer() {
     $("#tbody-customer").empty();
     $.ajax({
-        url: baseUrl + "customer?option=loadAllCustomer", method: "GET", dataType: "json", success: function (res) {
+        url: baseUrl + "customer/loadAllCustomer", method: "GET", dataType: "json", success: function (res) {
             console.log(res);
 
             for (let i of res.data) {
@@ -130,7 +130,7 @@ $("#searchCusId").on("keypress", function (event) {
         var search = $("#searchCusId").val();
         $("#tbody-customer").empty();
         $.ajax({
-            url: baseUrl + "customer?id=" + search + "&option=searchCusId",
+            url: baseUrl + "customer/searchCusId/?id=" + search,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
