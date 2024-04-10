@@ -5,15 +5,15 @@ loadAllOrderDetails();
 function loadAllOrders() {
     $("#tblOrder").empty();
     $.ajax({
-        url: baseUrl+ "order?option=LoadOrders", method: "GET", dataType: "json", success: function (res) {
+        url: baseUrl + "orders/LoadOrders", method: "GET", dataType: "json", success: function (res) {
             console.log(res);
 
             for (let i of res.data) {
-                let orderId = i.orderId;
+                let oid = i.oid;
                 let date = i.date;
-                let cusId = i.cusId;
+                let cusID = i.cusID;
 
-                let row = "<tr><td>" + orderId + "</td><td>" + date + "</td><td>" + cusId + "</td></tr>";
+                let row = "<tr><td>" + oid + "</td><td>" + date + "</td><td>" + cusID + "</td></tr>";
                 $("#tblOrder").append(row);
             }
             console.log(res.message);
@@ -28,16 +28,16 @@ function loadAllOrders() {
 function loadAllOrderDetails() {
     $("#tblOrderDetails").empty();
     $.ajax({
-        url: baseUrl+ "order?option=LoadOrderDetails", method: "GET", dataType: "json", success: function (res) {
+        url: baseUrl + "orders/LoadOrderDetails", method: "GET", dataType: "json", success: function (res) {
             console.log(res);
 
             for (let i of res.data) {
-                let OrderId = i.OrderId;
-                let code = i.code;
+                let oid = i.oid;
+                let itemCode = i.itemCode;
                 let qty = i.qty;
                 let unitPrice = i.unitPrice;
 
-                let row = "<tr><td>" + OrderId + "</td><td>" + code + "</td><td>" + qty + "</td><td>" + unitPrice + "</td></tr>";
+                let row = "<tr><td>" + oid + "</td><td>" + itemCode + "</td><td>" + qty + "</td><td>" + unitPrice + "</td></tr>";
                 $("#tblOrderDetails").append(row);
             }
             console.log(res.message);

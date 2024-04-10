@@ -4,35 +4,22 @@ $("#btnPurchase").attr('disabled', true);
 $("#btnAddToCart").attr('disabled', true);
 
 /**
- * Date
- **/
-function setDates() {
-
-    const date = new Date();
-
-    const day = ("0" + date.getDate()).slice(-2);
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-
-    const today = date.getFullYear() + "-" + (month) + "-" + (day);
-
-    $('#orderDate').val(today);
-
-}
+ * Invoice Details
+ * */
 
 /**
+ * Invoice Details
  * Order ID
- **/
+ * */
 function generateOrderID() {
     $("#orderId").val("ODI-001");
     $.ajax({
-        url: baseUrl + "order?option=OrderIdGenerate",
+        url: baseUrl + "orders/OrderIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
         success: function (resp) {
-            setDates();//Date
-
-            let orderId = resp.orderId;
+            let orderId = resp.value;
             let tempId = parseInt(orderId.split("-")[1]);
             tempId = tempId + 1;
             if (tempId <= 9) {
@@ -50,12 +37,17 @@ function generateOrderID() {
 }
 
 /**
- * Customer Combo
+ * Invoice Details
+ * Customer Select Combo
  * */
 $("#cmbCustomerId").empty();
 $.ajax({
-    url: baseUrl + "customer?option=loadAllCustomer", method: "GET", dataType: "json", success: function (res) {
+    url: baseUrl + "customer/loadAllCustomer",
+    method: "GET",
+    dataType: "json",
+    success: function (res) {
         console.log(res);
+        setDates();
 
         for (let i of res.data) {
             let id = i.id;
@@ -64,7 +56,8 @@ $.ajax({
         }
         generateOrderID();
         console.log(res.message);
-    }, error: function (error) {
+    },
+    error: function (error) {
         let message = JSON.parse(error.responseText).message;
         console.log(message);
     }
@@ -75,7 +68,7 @@ $.ajax({
 $("#cmbCustomerId").click(function () {
     var search = $("#cmbCustomerId").val();
     $.ajax({
-        url: baseUrl + "customer?id=" + search + "&option=searchCusId",
+        url: baseUrl + "customer/searchCusId/?id="+ search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
@@ -94,11 +87,15 @@ $("#cmbCustomerId").click(function () {
 });
 
 /**
- Item Select Combo
+ * Items Details
+ * Item Select Combo
  * */
 $("#cmbItemCode").empty();
 $.ajax({
-    url: baseUrl + "item?option=loadAllItem", method: "GET", dataType: "json", success: function (res) {
+    url: baseUrl + "item/loadAllItem",
+    method: "GET",
+    dataType: "json",
+    success: function (res) {
         console.log(res);
         for (let i of res.data) {
             let code = i.code;
@@ -106,7 +103,8 @@ $.ajax({
             $("#cmbItemCode").append(`<option>${code}</option>`);
         }
         console.log(res.message);
-    }, error: function (error) {
+    },
+    error: function (error) {
         let message = JSON.parse(error.responseText).message;
         console.log(message);
     }
@@ -115,7 +113,7 @@ $.ajax({
 $("#cmbItemCode").click(function () {
     var search = $("#cmbItemCode").val();
     $.ajax({
-        url: baseUrl + "item?code=" + search + "&option=searchItemCode",
+        url: baseUrl + "item/searchItemCode/?code="+ search,
         method: "GET",
         contentType: "application/json",
         dataType: "json",
@@ -133,7 +131,7 @@ $("#cmbItemCode").click(function () {
 });
 
 /**
-  Items Details
+ * Items Details
  * */
 
 let itemCode;
@@ -150,7 +148,8 @@ let discount = 0;
 let subTotal = 0;
 
 /**
- Place order
+ * Logics
+ * Place order
  * */
 let tableRow = [];
 $("#btnAddToCart").on("click", function () {
@@ -180,7 +179,9 @@ $("#btnAddToCart").on("click", function () {
     }
 
     /**
-     Place order Table
+     * Logics
+     * Place order
+     * Table Add logic
      * */
     $("#tblAddToCart>tr").click('click', function () {
 
@@ -201,7 +202,9 @@ $("#btnAddToCart").on("click", function () {
 });
 
 /**
- * Place order QtyOnHand
+ * Logics
+ * Place order
+ * Reduce QtyOnHand
  * */
 function reduceQty(orderQty) {
     let minQty = parseInt(orderQty);
@@ -211,6 +214,7 @@ function reduceQty(orderQty) {
 }
 
 /**
+ * Logics
  * Place order
  * Calculate Total
  * */
@@ -221,6 +225,7 @@ function calcTotal(amount) {
 }
 
 /**
+ * Logics
  * Place order
  * Manage Available Qty
  * */
@@ -236,8 +241,9 @@ function manageQtyOnHand(preQty, nowQty) {
 }
 
 /**
+ * Logics
  * Place order
- * Total
+ * Manage Total
  * */
 
 function manageTotal(preTotal, nowTotal) {
@@ -248,11 +254,11 @@ function manageTotal(preTotal, nowTotal) {
 }
 
 /**
+ * Logics
  * Place order
  * Table Load
  * */
 $("#tblAddToCart").empty();
-
 function loadCartTableDetail() {
     itemCode = $("#cmbItemCode").val();
     itemName = $("#itemName").val();
@@ -267,6 +273,7 @@ function loadCartTableDetail() {
 }
 
 /**
+ * Logics
  * Place order
  * Enter BuyQty and Check Qty On Hand
  * */
@@ -285,6 +292,7 @@ $(document).on("change keyup blur", "#buyQty", function () {
 });
 
 /**
+ * Logics
  * Place order
  * Enter Discount and sub Total display
  * */
@@ -298,6 +306,7 @@ $(document).on("change keyup blur", "#txtDiscount", function () {
 });
 
 /**
+ * Logics
  * Place order
  * Enter Cash and Balance display
  * */
@@ -316,6 +325,24 @@ $(document).on("change keyup blur", "#txtCash", function () {
 });
 
 /**
+ * Date Default
+ * */
+function setDates() {
+
+    const date = new Date();
+
+    const day = ("0" + date.getDate()).slice(-2);
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+    const today = date.getFullYear() + "-" + (month) + "-" + (day);
+
+    $('#orderDate').val(today);
+
+}
+
+
+/**
+ * Logics
  * Place order
  * Purchase Order button
  * */
@@ -325,8 +352,8 @@ $("#btnPurchase").click(function () {
     var orderDetails = [];
     for (let i = 0; i < $("#tblAddToCart tr").length; i++) {
         var detailOb = {
-            orderId: $("#orderId").val(),
-            itemId: $("#tblAddToCart tr").children(':nth-child(1)')[i].innerText,
+            oid: $("#orderId").val(),
+            itemCode: $("#tblAddToCart tr").children(':nth-child(1)')[i].innerText,
             qty: $("#tblAddToCart tr").children(':nth-child(4)')[i].innerText,
             unitPrice: $("#tblAddToCart tr").children(':nth-child(5)')[i].innerText
         }
@@ -337,13 +364,16 @@ $("#btnPurchase").click(function () {
     var date = $("#orderDate").val();
 
     var orderOb = {
-        "orderId": orderId, "date": date, "customerId": customerId, "detail": orderDetails
+        "oid": orderId,
+        "date": date,
+        "cusID": customerId,
+        "orderDetails": orderDetails
     }
     console.log(orderOb)
     console.log(orderDetails)
 
     $.ajax({
-        url: baseUrl + "order",
+        url: baseUrl + "orders",
         method: "POST",
         contentType: "application/json",
         dataType: "json",
@@ -351,21 +381,12 @@ $("#btnPurchase").click(function () {
         success: function (res) {
             saveUpdateAlert("Order", res.message);
             generateOrderID();
-            console.log("check")
+
         },
         error: function (error) {
-            console.log("error")
             let message = JSON.parse(error.responseText).message;
             unSuccessUpdateAlert("Order", message);
         }
-    });
-
-    $.ajax({
-        url: baseUrl + "order",
-        method: "PUT",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify(orderOb)
     });
 
     clearDetails();
@@ -376,6 +397,7 @@ $("#btnPurchase").click(function () {
 });
 
 /**
+ * Logics
  * Place order
  * Clear Method
  * */
@@ -387,6 +409,7 @@ function clearDetails() {
 }
 
 /**
+ * Logics
  * Place order
  * Clear Button
  * */
@@ -395,6 +418,7 @@ $("#btnClearAll").click(function () {
 });
 
 /**
+ * Logics
  * Place order
  * Remove Row
  * */
@@ -407,7 +431,10 @@ $("#tblAddToCart").dblclick(function () {
         confirmButtonText: 'Yes',
         denyButtonText: 'No',
         customClass: {
-            actions: 'my-actions', cancelButton: 'order-1 right-gap', confirmButton: 'order-2', denyButton: 'order-3',
+            actions: 'my-actions',
+            cancelButton: 'order-1 right-gap',
+            confirmButton: 'order-2',
+            denyButton: 'order-3',
         }
     }).then((result) => {
         if (result.isConfirmed) {
