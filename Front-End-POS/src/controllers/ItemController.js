@@ -8,12 +8,12 @@ $("#btnDeleteItem").attr('disabled', true);
 function generateItemID() {
     $("#txtItemID").val("I00-001");
     $.ajax({
-        url: "http://localhost:8080/app/item?option=ItemIdGenerate",
+        url: "http://localhost:8080/app/item/ItemIdGenerate",
         method: "GET",
         contentType: "application/json",
         dataType: "json",
         success: function (resp) {
-            let code = resp.code;
+            let code = resp.value;
             let tempId = parseInt(code.split("-")[1]);
             tempId = tempId + 1;
             if (tempId <= 9) {
@@ -72,7 +72,7 @@ function setTextFieldValues(code, description, qty, price) {
 function loadAllItems() {
     $("#ItemTable").empty();
     $.ajax({
-        url: "http://localhost:8080/app/item?option=loadAllItem",
+        url: "http://localhost:8080/app/item/loadAllItem",
         method: "GET",
         dataType: "json",
         success: function (res) {
@@ -130,7 +130,7 @@ $("#ItemIdSearch").on("keypress", function (event) {
         var search = $("#ItemIdSearch").val();
         $("#ItemTable").empty();
         $.ajax({
-            url: "http://localhost:8080/app/item?code=" + search + "&option=searchItemCode",
+            url: "http://localhost:8080/app/item/searchItemCode/?code=" + search,
             method: "GET",
             contentType: "application/json",
             dataType: "json",
